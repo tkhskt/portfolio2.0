@@ -1,12 +1,12 @@
 <template>
-  <header>
+  <div class="header-container">
     <p class="header-title">Keita Takahashi</p>
     <span class="circle"></span>
     <nuxt-link to="/" class="about">about</nuxt-link>
-  </header>
+  </div>
 </template>
 <style scoped lang="scss">
-header {
+.header-container {
   width: 100%;
   padding: 30px 15vw;
   display: flex;
