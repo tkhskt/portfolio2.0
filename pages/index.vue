@@ -12,7 +12,7 @@
           <technology class="component-tecnology" />
         </section>
         <div class="vinyl">
-          <vinyl />
+          <vinyl :hover="musicHovered" />
         </div>
       </div>
     </main>
@@ -31,6 +31,22 @@ export default {
     Music,
     Technology,
     Vinyl
+  },
+  data() {
+    return {
+      musicHovered: false
+    }
+  },
+
+  watch: {},
+  created() {},
+  methods: {
+    musicMouseOverAction() {
+      this.musicHovered = true
+    },
+    musicMouseLeaveAction() {
+      this.musicHovered = false
+    }
   }
 }
 </script>
@@ -55,6 +71,7 @@ main {
       right: 0;
       width: 50%;
       height: 100%;
+      z-index: 50;
       .component-tecnology {
         position: absolute;
         right: 0;

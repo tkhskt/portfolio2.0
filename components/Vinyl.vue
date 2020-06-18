@@ -1,8 +1,8 @@
 <template>
   <div class="vinyl-container">
-    <div class="vinyl"></div>
-    <div class="vinyl-label"></div>
-    <div class="vinyl-hole"></div>
+    <div class></div>
+    <div :class="{ vinyl_label: hover }"></div>
+    <div :class="{ vinyl_hole: hover }"></div>
   </div>
 </template>
 <script>
@@ -11,7 +11,9 @@ export default {
   data() {
     return {}
   },
-
+  props: {
+    hover: Boolean
+  },
   watch: {},
   created() {},
   methods: {}
@@ -25,7 +27,7 @@ export default {
   }
 }
 
-@mixin parent($radius, $color) {
+@mixin LeftParent($radius, $color) {
   position: absolute;
   width: $radius;
   height: $radius;
@@ -35,7 +37,7 @@ export default {
   background-image: linear-gradient(to right, transparent 50%, $color 0);
 }
 
-@mixin before($color) {
+@mixin LeftBefore($color) {
   content: '';
   display: block;
   margin-left: 50%;
@@ -43,7 +45,7 @@ export default {
   border-radius: 0 100% 100% 0 / 50%;
   background-color: $color;
   transform-origin: left;
-  animation: spin 1.5s linear;
+  animation: spin 0.3s ease;
   //bg3s step-end 180以上回転する時
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
@@ -58,31 +60,31 @@ export default {
   .vinyl {
     position: absolute;
     left: 0;
-    @include parent(100%, $color-black);
+    @include LeftParent(100%, $color-black);
     &:before {
-      @include before($color-black);
+      @include LeftBefore($color-black);
     }
   }
 
-  .vinyl-label {
+  .vinyl_label {
     position: absolute;
     transform: translate(-50%, -50%);
-    left: 50%;
+    left: calc(50% + 1px);
     top: 50%;
-    @include parent(24vh, $color-red);
+    @include LeftParent(24vh, $color-red);
     &:before {
-      @include before($color-red);
+      @include LeftBefore($color-red);
     }
   }
 
-  .vinyl-hole {
+  .vinyl_hole {
     position: absolute;
     transform: translate(-50%, -50%);
-    left: 50%;
+    left: calc(50% + 1px);
     top: 50%;
-    @include parent(3vh, $color-white);
+    @include LeftParent(3vh, $color-white);
     &:before {
-      @include before($color-white);
+      @include LeftBefore($color-white);
     }
   }
 }

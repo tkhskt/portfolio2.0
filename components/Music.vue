@@ -1,6 +1,12 @@
 <template>
   <div class="music-container" :style="styleObject">
-    <p class="music-text">Music</p>
+    <p
+      class="music-text"
+      @mouseover="$parent.musicMouseOverAction"
+      @mouseleave="$parent.musicMouseLeaveAction"
+    >
+      Music
+    </p>
   </div>
 </template>
 <script>
