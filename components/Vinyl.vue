@@ -21,14 +21,32 @@ export default {
 <style scoped lang="scss">
 @keyframes spin {
   to {
-    transform: rotate(180deg);
+    transform: rotate(180deg) translate3d(0, 0, 0);
   }
 }
 
-@keyframes bg {
-  50% {
-    background: #655;
-  }
+@mixin parent($radius, $color) {
+  position: absolute;
+  width: $radius;
+  height: $radius;
+  transform-origin: center;
+  border-radius: 50%;
+  background: transparent;
+  background-image: linear-gradient(to right, transparent 50%, $color 0);
+}
+
+@mixin before($color) {
+  content: '';
+  display: block;
+  margin-left: 50%;
+  height: 100%;
+  border-radius: 0 100% 100% 0 / 50%;
+  background-color: $color;
+  transform-origin: left;
+  animation: spin 1.5s linear;
+  //bg3s step-end 180以上回転する時
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 .vinyl-container {
@@ -36,32 +54,13 @@ export default {
   width: 88vh;
   height: 88vh;
   transform-origin: center;
-  transform: rotate(20deg);
+  transform: rotate(20deg) translate3d(0, 0, 0);
   .vinyl {
     position: absolute;
     left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: transparent;
-    background-image: linear-gradient(
-      to right,
-      transparent 50%,
-      $color-black 0
-    );
-
+    @include parent(100%, $color-black);
     &:before {
-      content: '';
-      display: block;
-      margin-left: 50%;
-      height: 100%;
-      border-radius: 0 100% 100% 0 / 50%;
-      background-color: inherit;
-      transform-origin: left;
-      animation: spin 1.5s linear;
-      //bg3s step-end 180以上回転する時
-      animation-iteration-count: 1;
-      animation-fill-mode: forwards;
+      @include before($color-black);
     }
   }
 
@@ -70,24 +69,9 @@ export default {
     transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
-    width: 24vh;
-    height: 24vh;
-    border-radius: 50%;
-    background: transparent;
-    background-image: linear-gradient(to right, transparent 50%, $color-red 0);
-
+    @include parent(24vh, $color-red);
     &:before {
-      content: '';
-      display: block;
-      margin-left: 50%;
-      height: 100%;
-      border-radius: 0 100% 100% 0 / 50%;
-      background-color: inherit;
-      transform-origin: left;
-      animation: spin 1.5s linear;
-      //bg3s step-end 180以上回転する時
-      animation-iteration-count: 1;
-      animation-fill-mode: forwards;
+      @include before($color-red);
     }
   }
 
@@ -96,28 +80,9 @@ export default {
     transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
-    width: 3vh;
-    height: 3vh;
-    border-radius: 50%;
-    background: transparent;
-    background-image: linear-gradient(
-      to right,
-      transparent 50%,
-      $color-white 0
-    );
-
+    @include parent(3vh, $color-white);
     &:before {
-      content: '';
-      display: block;
-      margin-left: 50%;
-      height: 100%;
-      border-radius: 0 100% 100% 0 / 50%;
-      background-color: inherit;
-      transform-origin: left;
-      animation: spin 1.5s linear;
-      //bg3s step-end 180以上回転する時
-      animation-iteration-count: 1;
-      animation-fill-mode: forwards;
+      @include before($color-white);
     }
   }
 }
