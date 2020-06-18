@@ -11,6 +11,9 @@
         <section class="technology">
           <technology class="component-tecnology" />
         </section>
+        <div class="vinyl">
+          <vinyl />
+        </div>
       </div>
     </main>
   </div>
@@ -20,12 +23,14 @@
 import Header from '~/components/Header.vue'
 import Music from '~/components/Music.vue'
 import Technology from '~/components/Technology.vue'
+import Vinyl from '~/components/Vinyl.vue'
 
 export default {
   components: {
     Header,
     Music,
-    Technology
+    Technology,
+    Vinyl
   }
 }
 </script>
@@ -40,6 +45,7 @@ header {
 main {
   .main-container {
     position: relative;
+    height: 100vh;
     .music {
       position: absolute;
       width: 50%;
@@ -48,10 +54,17 @@ main {
       position: absolute;
       right: 0;
       width: 50%;
+      height: 100%;
       .component-tecnology {
         position: absolute;
         right: 0;
       }
+    }
+    .vinyl {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      top: 50%;
     }
   }
 }
