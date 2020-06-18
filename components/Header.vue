@@ -8,7 +8,7 @@
 <style scoped lang="scss">
 .header-container {
   width: 100%;
-  padding: 30px 15vw;
+  padding: 30px $padding-horizontal;
   display: flex;
   align-items: center;
   .header-title {
@@ -17,6 +17,7 @@
     font-size: 13px;
     letter-spacing: 2.3px;
     font-weight: 500;
+    user-select: none;
   }
   .circle {
     display: inline-block;
@@ -33,6 +34,7 @@
     color: $color-black;
     text-decoration: none;
     font-style: italic;
+    user-select: none;
   }
 }
 </style>

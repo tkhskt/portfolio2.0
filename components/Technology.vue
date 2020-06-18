@@ -1,11 +1,11 @@
 <template>
-  <div class="music-container" :style="styleObject">
-    <p class="music-text">Music</p>
+  <div class="technology-container" :style="styleObject">
+    <p class="technology-text">Technology</p>
   </div>
 </template>
 <script>
 export default {
-  name: 'Music',
+  name: 'Technology',
   data() {
     return {
       innerWidth: window.innerWidth,
@@ -50,31 +50,31 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.music-container {
+.technology-container {
   position: relative;
-  background-color: $color-primary;
+  background-color: $color-secondary;
   height: 100vh;
   &::after {
     content: '';
     position: absolute;
     display: block;
-    right: calc(-1 * var(--width));
+    left: calc(-1 * var(--width));
     top: 0px;
     width: 0px;
     height: 0px;
-    border-bottom: solid 100vh transparent;
-    border-left: solid var(--width) $color-primary;
+    border-top: solid 100vh transparent;
+    border-right: solid var(--width) $color-secondary;
   }
-  .music-text {
+  .technology-text {
     position: absolute;
     transform: translateY(-50%);
     top: 50%;
     z-index: 40;
     font-size: $font-size-extra-large;
     font-weight: $font-weight-light;
-    color: $color-black;
-    width: 26vw;
-    left: $padding-horizontal;
+    color: $color-white;
+
+    right: $padding-horizontal;
     text-align: center;
     user-select: none;
   }
