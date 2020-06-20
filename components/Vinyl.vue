@@ -17,6 +17,7 @@
       }"
       class="hole"
     ></div>
+    <div class="arc"></div>
   </div>
 </template>
 <script>
@@ -31,8 +32,7 @@ export default {
     ...mapState('top', ['isHoverMusic', 'isHoverTechnology', 'isMusicSelected'])
   },
   watch: {},
-  created() {},
-  methods: {}
+  created() {}
 }
 </script>
 
@@ -76,6 +76,27 @@ export default {
 @keyframes leftTransition {
   to {
     left: calc(50% - 1px);
+  }
+}
+
+@keyframes playRecord {
+  from {
+    transform: rotate(-30deg);
+  }
+  to {
+    transform: rotate(-25deg);
+  }
+}
+
+@keyframes displayRecordRing {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
@@ -142,12 +163,18 @@ export default {
   animation-fill-mode: forwards;
 }
 
+@mixin playRecord() {
+  animation: playRecord 0.5s linear infinite alternate,
+    displayRecordRing 2s linear 1 forwards;
+}
+
 .vinyl-container {
   position: relative;
   width: 88vh;
   height: 88vh;
   transform-origin: center;
   transform: rotate(20deg);
+
   .vinyl {
     position: absolute;
     left: 0;
@@ -224,6 +251,19 @@ export default {
       @include before($color-primary);
       @include triggerClear();
     }
+  }
+
+  .arc {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: url('~assets/img/arc.svg');
+    transform-origin: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    @include playRecord();
   }
 }
 </style>

@@ -1,11 +1,16 @@
 export const state = () => ({
+  isInitialized: false,
   isHoverMusic: false,
   isHoverTechnology: false,
   isMusicSelected: false,
-  isTechnologySelected: false
+  isTechnologySelected: false,
+  comeFromTop: false
 })
 
 export const actions = {
+  updateInitialized({ commit }) {
+    commit('updateInitialized', true)
+  },
   musicHovered({ commit }) {
     commit('updateHover', { music: true, technology: false })
   },
@@ -23,10 +28,16 @@ export const actions = {
   },
   clearSelection({ commit }) {
     commit('clearSelection')
+  },
+  comeFromTop({ commit }) {
+    commit('setComeFromTop')
   }
 }
 
 export const mutations = {
+  updateInitialized(state) {
+    state.isInitialized = true
+  },
   updateHover(state, value) {
     state.isHoverMusic = value.music
     state.isHoverTechnology = value.technology
@@ -40,5 +51,8 @@ export const mutations = {
   clearSelection(state) {
     state.isMusicSelected = false
     state.isTechnologySelected = false
+  },
+  setComeFromTop(state) {
+    state.comeFromTop = true
   }
 }

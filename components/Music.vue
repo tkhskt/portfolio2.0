@@ -83,8 +83,8 @@ export default {
     },
     onClickMusic() {
       if (!this.isMusicSelected) {
+        this.$store.dispatch('top/comeFromTop')
         this.$router.push('/music')
-        this.$store.dispatch('top/selectMusic')
       }
 
       // history.pushState(

@@ -1,6 +1,6 @@
 <template>
   <div class="header-container">
-    <p class="header-title">Keita Takahashi</p>
+    <nuxt-link to="/" class="header-title">Keita Takahashi</nuxt-link>
     <span class="circle"></span>
     <nuxt-link to="/" class="about">about</nuxt-link>
   </div>
@@ -18,6 +18,8 @@
     letter-spacing: 2.3px;
     font-weight: 500;
     user-select: none;
+    color: $color-black;
+    text-decoration: none;
   }
   .circle {
     display: inline-block;
