@@ -1,15 +1,12 @@
 <template>
   <div class="container">
-    <loading class="loading" />
     <header>
       <Header class="header" />
     </header>
     <main>
       <div class="main-container">
         <section class="left">
-          <keep-alive>
-            <music />
-          </keep-alive>
+          <music />
         </section>
         <section class="right">
           <transition name="technology">
@@ -34,7 +31,6 @@ import Music from '~/components/Music.vue'
 import Technology from '~/components/Technology.vue'
 import Player from '~/components/Player.vue'
 import Vinyl from '~/components/Vinyl.vue'
-import Loading from '~/components/Loading.vue'
 
 export default {
   components: {
@@ -42,8 +38,7 @@ export default {
     Music,
     Technology,
     Player,
-    Vinyl,
-    Loading
+    Vinyl
   },
   data() {
     return {}
@@ -52,9 +47,7 @@ export default {
     ...mapState('top', ['isMusicSelected', 'isTechnologySelected'])
   },
   watch: {},
-  created() {
-    this.$store.dispatch('top/clearSelection')
-  },
+  created() {},
   methods: {}
 }
 </script>

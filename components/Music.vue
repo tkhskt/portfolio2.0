@@ -1,15 +1,35 @@
 <template>
-  <div class="music-container" :style="styleObject">
-    <p
-      class="music-text"
-      @mouseover="$parent.musicMouseOverAction"
-      @mouseleave="$parent.musicMouseLeaveAction"
+  <div
+    class="music-container"
+    :class="{ 'music-container-clicked': isMusicSelected }"
+    :style="styleObject"
+  >
+    <div
+      class="text-container"
+      :class="{ 'text-container-clicked': isMusicSelected }"
     >
-      Music
-    </p>
+      <h1
+        class="music-title"
+        @click="onClickMusic"
+        @mouseover="onHoverTitle"
+        @mouseleave="onMouseLeaveFromTitle"
+      >
+        Music
+      </h1>
+
+      <p
+        class="music-concept"
+        :class="{ 'music-concept-clicked': isMusicSelected }"
+      >
+        エレクトロニカ、IDM、アンビエントなどの音楽を愛しています。<br />
+        音楽をインターフェースとして、私の脳内世界の情景を聴き手の脳内に映し出すべく日々制作しています。
+      </p>
+    </div>
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'Music',
   data() {
@@ -22,7 +42,9 @@ export default {
       }
     }
   },
-
+  computed: {
+    ...mapState('top', ['isHoverMusic', 'isHoverTechnology', 'isMusicSelected'])
+  },
   watch: {},
   created() {},
   mounted() {
@@ -50,12 +72,67 @@ export default {
       this.innerWidth = window.innerWidth
       this.innderHeight = window.innerHeight
       this.setContainerWidth()
+    },
+    onHoverTitle() {
+      if (!this.isMusicSelected) {
+        this.$store.dispatch('top/musicHovered')
+      }
+    },
+    onMouseLeaveFromTitle() {
+      this.$store.dispatch('top/leaveMouse')
+    },
+    onClickMusic() {
+      if (!this.isMusicSelected) {
+        this.$router.push('/music')
+        this.$store.dispatch('top/selectMusic')
+      }
+
+      // history.pushState(
+      //   {},
+      //   null,
+      //   this.$route.path + '#' + encodeURIComponent('music')
+      // )
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
+@keyframes show-music-concept-opacity {
+  50% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes show-music-concept-visibility {
+  to {
+    visibility: visible;
+  }
+}
+
+@keyframes music-concept-margin {
+  to {
+    margin-top: 6vh;
+  }
+}
+
+@keyframes clear {
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes container-up {
+  to {
+    transform: translateY(0);
+    top: 14vh;
+    left: $padding-horizontal;
+  }
+}
+
 .music-container {
   position: relative;
   background-color: $color-primary;
@@ -71,18 +148,46 @@ export default {
     border-bottom: solid 100vh transparent;
     border-left: solid var(--width) $color-primary;
   }
-  .music-text {
+  .text-container {
     position: absolute;
     transform: translateY(-50%);
     top: 50%;
-    z-index: 40;
-    font-size: $font-size-extra-large;
-    font-weight: $font-weight-light;
-    color: $color-black;
-    width: 26vw;
-    left: $padding-horizontal;
-    text-align: center;
-    user-select: none;
+    left: $padding-horizontal + 7vw;
+    z-index: 500;
+    .music-title {
+      font-size: $font-size-extra-large;
+      font-weight: $font-weight-light;
+      user-select: none;
+    }
+    .music-concept {
+      visibility: hidden;
+      width: 25vw;
+      line-height: $line-height-description;
+      letter-spacing: $letter-spacing-description;
+    }
+    .music-concept-clicked {
+      animation: show-music-concept-visibility 0.5s step-end,
+        show-music-concept-opacity 1s ease, music-concept-margin 0.5s step-end;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+    }
   }
+  .text-container-clicked {
+    animation: container-up 0.5s ease;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes up-index {
+  to {
+    z-index: 50;
+  }
+}
+
+.music-container-clicked {
+  animation: up-index 0.3s step-end;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 </style>

@@ -1,18 +1,34 @@
 <template>
   <div class="vinyl-container">
-    <div class></div>
-    <div :class="{ vinyl_label: hover }"></div>
-    <div :class="{ vinyl_hole: hover }"></div>
+    <div :class="{ vinyl: isMusicSelected }"></div>
+    <div
+      :class="{
+        vinyl_label_hover: isHoverMusic,
+        vinyl_label_out: !isHoverMusic && !isMusicSelected,
+        vinyl_label_selected: isMusicSelected
+      }"
+      class="label"
+    ></div>
+    <div
+      :class="{
+        vinyl_hole_hover: isHoverMusic,
+        vinyl_hole_out: !isHoverMusic && !isMusicSelected,
+        vinyl_hole_selected: isMusicSelected
+      }"
+      class="hole"
+    ></div>
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'Vinyl',
   data() {
     return {}
   },
-  props: {
-    hover: Boolean
+  computed: {
+    ...mapState('top', ['isHoverMusic', 'isHoverTechnology', 'isMusicSelected'])
   },
   watch: {},
   created() {},
@@ -21,23 +37,60 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@keyframes spin {
+@keyframes fill {
   to {
-    transform: rotate(180deg) translate3d(0, 0, 0);
+    transform: rotate(180deg);
   }
 }
 
-@mixin LeftParent($radius, $color) {
+@keyframes clear {
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes fullSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes changeColorPrimary {
+  to {
+    background: $color-primary;
+  }
+}
+
+@keyframes changeColorRed {
+  to {
+    background-color: $color-red;
+  }
+}
+
+@keyframes changeColorWhite {
+  to {
+    background-color: $color-white;
+  }
+}
+
+@keyframes leftTransition {
+  to {
+    left: calc(50% - 1px);
+  }
+}
+
+@mixin LeftParent($radius, $color, $background-color) {
   position: absolute;
   width: $radius;
   height: $radius;
   transform-origin: center;
   border-radius: 50%;
-  background: transparent;
-  background-image: linear-gradient(to right, transparent 50%, $color 0);
+  background: $background-color;
+  // 左色:右色
+  background-image: linear-gradient(to right, $background-color 50%, $color 0);
 }
 
-@mixin LeftBefore($color) {
+@mixin before($color) {
   content: '';
   display: block;
   margin-left: 50%;
@@ -45,8 +98,46 @@ export default {
   border-radius: 0 100% 100% 0 / 50%;
   background-color: $color;
   transform-origin: left;
-  animation: spin 0.3s ease;
+}
+
+@mixin triggerFill() {
+  animation: fill 0.3s ease;
   //bg3s step-end 180以上回転する時
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@mixin triggerClear() {
+  animation: clear 0.3s ease;
+  //bg3s step-end 180以上回転する時
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@mixin triggerVinylAnimation() {
+  animation: clear 1s ease;
+  //bg3s step-end 180以上回転する時
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: 0.3s;
+}
+
+@mixin triggerLabelFullSpin() {
+  animation: fullSpin 0.6s linear, changeColorRed 0.3s step-end;
+  //bg3s step-end 180以上回転する時
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@mixin triggerHoleFullSpin() {
+  animation: fullSpin 0.6s linear, changeColorWhite 0.3s step-end;
+  //bg3s step-end 180以上回転する時
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@mixin triggerLeftTransition() {
+  animation: leftTransition 0.3s step-end;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
@@ -56,35 +147,82 @@ export default {
   width: 88vh;
   height: 88vh;
   transform-origin: center;
-  transform: rotate(20deg) translate3d(0, 0, 0);
+  transform: rotate(20deg);
   .vinyl {
     position: absolute;
     left: 0;
-    @include LeftParent(100%, $color-black);
+    @include LeftParent(100%, $color-black, transparent);
     &:before {
-      @include LeftBefore($color-black);
+      @include before($color-secondary);
+      @include triggerVinylAnimation();
     }
   }
 
-  .vinyl_label {
+  .label {
     position: absolute;
     transform: translate(-50%, -50%);
     left: calc(50% + 1px);
     top: 50%;
-    @include LeftParent(24vh, $color-red);
+  }
+
+  .vinyl_label_selected {
+    @include LeftParent(24vh, $color-secondary, $color-red);
+    @include triggerLeftTransition();
     &:before {
-      @include LeftBefore($color-red);
+      @include before($color-primary);
+      @include triggerLabelFullSpin();
     }
   }
 
-  .vinyl_hole {
+  .vinyl_label_hover {
+    @include LeftParent(24vh, $color-red, transparent);
+    &:before {
+      @include before($color-red);
+      @include triggerFill();
+    }
+  }
+
+  .vinyl_label_out {
+    @include LeftParent(24vh, transparent, $color-red);
+    animation: changeColorPrimary 0.3s step-end;
+    //bg3s step-end 180以上回転する時
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    &:before {
+      @include before($color-primary);
+      @include triggerClear();
+    }
+  }
+
+  .hole {
     position: absolute;
     transform: translate(-50%, -50%);
     left: calc(50% + 1px);
     top: 50%;
-    @include LeftParent(3vh, $color-white);
+  }
+
+  .vinyl_hole_selected {
+    @include LeftParent(3vh, $color-secondary, $color-white);
+    @include triggerLeftTransition();
     &:before {
-      @include LeftBefore($color-white);
+      @include before($color-primary);
+      @include triggerHoleFullSpin();
+    }
+  }
+
+  .vinyl_hole_hover {
+    @include LeftParent(3vh, $color-white, transparent);
+    &:before {
+      @include before($color-white);
+      @include triggerFill();
+    }
+  }
+
+  .vinyl_hole_out {
+    @include LeftParent(3vh, $color-primary, $color-white);
+    &:before {
+      @include before($color-primary);
+      @include triggerClear();
     }
   }
 }

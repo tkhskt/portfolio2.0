@@ -1,13 +1,15 @@
 <template>
-  <div class="technology-container" :style="styleObject">
-    <p class="technology-text" :class="{ blur: isHoverMusic }">Technology</p>
-  </div>
+  <div
+    class="player-container"
+    :class="{ 'player-container-clicked': isMusicSelected }"
+    :style="styleObject"
+  ></div>
 </template>
 <script>
 import { mapState } from 'vuex'
 
 export default {
-  name: 'Technology',
+  name: 'Player',
   data() {
     return {
       innerWidth: window.innerWidth,
@@ -19,7 +21,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('top', ['isHoverMusic', 'isHoverTechnology'])
+    ...mapState('top', ['isHoverMusic', 'isHoverTechnology', 'isMusicSelected'])
   },
   watch: {},
   created() {},
@@ -54,10 +56,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.technology-container {
+.player-container {
   position: relative;
   background-color: $color-secondary;
   height: 100vh;
+  z-index: 50;
   &::after {
     content: '';
     position: absolute;
@@ -69,22 +72,17 @@ export default {
     border-top: solid 100vh transparent;
     border-right: solid var(--width) $color-secondary;
   }
-  .technology-text {
-    position: absolute;
-    transform: translateY(-50%);
-    top: 50%;
-    z-index: 1;
-    font-size: $font-size-extra-large;
-    font-weight: $font-weight-light;
-    color: $color-white;
-    right: $padding-horizontal;
-    text-align: center;
-    user-select: none;
-    transition: filter 0.3s ease;
+}
+
+@keyframes down-index {
+  to {
+    z-index: 0;
   }
-  .blur {
-    filter: blur(4px);
-    transition: filter 0.3s ease;
-  }
+}
+
+.player-container-clicked {
+  animation: down-index 0.3s step-end;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 </style>
