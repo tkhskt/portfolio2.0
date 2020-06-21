@@ -4,7 +4,8 @@ export const state = () => ({
   isHoverTechnology: false,
   isMusicSelected: false,
   isTechnologySelected: false,
-  comeFromTop: false
+  comeFromTop: false,
+  musicPlaying: false
 })
 
 export const actions = {
@@ -31,6 +32,9 @@ export const actions = {
   },
   comeFromTop({ commit }) {
     commit('setComeFromTop')
+  },
+  updateMusicPlaying({ commit }, status) {
+    commit('toggleMusicPlaying', status)
   }
 }
 
@@ -54,5 +58,8 @@ export const mutations = {
   },
   setComeFromTop(state) {
     state.comeFromTop = true
+  },
+  toggleMusicPlaying(state, value) {
+    state.musicPlaying = value
   }
 }

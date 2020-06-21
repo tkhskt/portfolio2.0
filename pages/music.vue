@@ -10,9 +10,6 @@
           <music />
         </section>
         <section class="right">
-          <transition name="technology">
-            <technology v-if="!isMusicSelected" class="component-tecnology" />
-          </transition>
           <transition name="player">
             <player v-if="isMusicSelected" class="component-player" />
           </transition>
@@ -29,7 +26,6 @@
 import { mapState } from 'vuex'
 import Header from '~/components/Header.vue'
 import Music from '~/components/Music.vue'
-import Technology from '~/components/Technology.vue'
 import Player from '~/components/Player.vue'
 import Vinyl from '~/components/Vinyl.vue'
 import Loading from '~/components/Loading.vue'
@@ -38,7 +34,6 @@ export default {
   components: {
     Header,
     Music,
-    Technology,
     Player,
     Vinyl,
     Loading

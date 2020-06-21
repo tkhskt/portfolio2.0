@@ -17,7 +17,7 @@
       }"
       class="hole"
     ></div>
-    <div class="arc"></div>
+    <div class="arc" :class="{ 'arc-playing': musicPlaying }"></div>
   </div>
 </template>
 <script>
@@ -29,7 +29,12 @@ export default {
     return {}
   },
   computed: {
-    ...mapState('top', ['isHoverMusic', 'isHoverTechnology', 'isMusicSelected'])
+    ...mapState('top', [
+      'isHoverMusic',
+      'isHoverTechnology',
+      'isMusicSelected',
+      'musicPlaying'
+    ])
   },
   watch: {},
   created() {}
@@ -164,8 +169,8 @@ export default {
 }
 
 @mixin playRecord() {
-  animation: playRecord 0.5s linear infinite alternate,
-    displayRecordRing 2s linear 1 forwards;
+  animation: playRecord 0.5s linear infinite alternate;
+  // displayRecordRing 2s linear 1 forwards;
 }
 
 .vinyl-container {
@@ -261,8 +266,12 @@ export default {
     left: 0;
     background: url('~assets/img/arc.svg');
     transform-origin: center;
+    transform: rotate(-30deg);
     background-repeat: no-repeat;
     background-size: contain;
+    animation: displayRecordRing 2s linear 1 forwards;
+  }
+  .arc-playing {
     @include playRecord();
   }
 }

@@ -1,11 +1,16 @@
 <template>
-  <div
-    class="player-container"
-    :class="{ 'player-container-clicked': isMusicSelected }"
-    :style="styleObject"
-  ></div>
+  <div class="player-container" :style="styleObject">
+    <div
+      class="player-bg"
+      :class="{ 'player-container-clicked': isMusicSelected }"
+    ></div>
+    <div class="button-container" @click="play">
+      <div class="play-button"></div>
+    </div>
+  </div>
 </template>
 <script>
+import { Howl } from 'howler'
 import { mapState } from 'vuex'
 
 export default {
@@ -17,11 +22,17 @@ export default {
       styleObject: {
         width: '0px',
         '--width': '0px'
-      }
+      },
+      howl: null
     }
   },
   computed: {
-    ...mapState('top', ['isHoverMusic', 'isHoverTechnology', 'isMusicSelected'])
+    ...mapState('top', [
+      'isHoverMusic',
+      'isHoverTechnology',
+      'isMusicSelected',
+      'musicPlaying'
+    ])
   },
   watch: {},
   created() {},
@@ -33,6 +44,7 @@ export default {
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.handleResize)
+    this.stop()
   },
   methods: {
     setContainerWidth() {
@@ -50,13 +62,34 @@ export default {
       this.innerWidth = window.innerWidth
       this.innderHeight = window.innerHeight
       this.setContainerWidth()
+    },
+    play() {
+      if (this.musicPlaying) {
+        return
+      }
+      this.howl = new Howl({
+        src: ['/mp3/tub.mp3'],
+        loop: true,
+        preload: true
+      })
+      this.howl.load()
+      const track = this.howl.play()
+      this.howl.fade(0.5, 1, 2000, track)
+      this.howl.fade(0, 0.5, 2000, track)
+      this.$store.dispatch('top/updateMusicPlaying', true)
+    },
+    stop() {
+      if (this.musicPlaying) {
+        this.howl.stop()
+        this.$store.dispatch('top/updateMusicPlaying', false)
+      }
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-.player-container {
+.player-bg {
   position: relative;
   background-color: $color-secondary;
   height: 100vh;
@@ -72,6 +105,16 @@ export default {
     border-top: solid 100vh transparent;
     border-right: solid var(--width) $color-secondary;
   }
+}
+
+.button-container {
+  position: absolute;
+  bottom: 6vh;
+  width: 100px;
+  height: 100px;
+  background: green;
+  z-index: 200;
+  right: $padding-horizontal;
 }
 
 @keyframes down-index {
