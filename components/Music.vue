@@ -10,6 +10,7 @@
     >
       <h1
         class="music-title"
+        :class="{ blur: isHoverTechnology }"
         @click="onClickMusic"
         @mouseover="onHoverTitle"
         @mouseleave="onMouseLeaveFromTitle"
@@ -109,6 +110,7 @@ export default {
 
 @keyframes show-music-concept-visibility {
   to {
+    height: auto;
     visibility: visible;
   }
 }
@@ -116,6 +118,7 @@ export default {
 @keyframes music-concept-margin {
   to {
     margin-top: 6vh;
+    width: 25vw;
   }
 }
 
@@ -153,7 +156,7 @@ export default {
     transform: translateY(-50%);
     top: 50%;
     left: $padding-horizontal + 7vw;
-    z-index: 500;
+    z-index: $z-index-title;
     .music-title {
       font-size: $font-size-extra-large;
       font-weight: $font-weight-light;
@@ -161,7 +164,8 @@ export default {
     }
     .music-concept {
       visibility: hidden;
-      width: 25vw;
+      height: 0;
+      width: 0;
       line-height: $line-height-description;
       letter-spacing: $letter-spacing-description;
     }
@@ -189,5 +193,9 @@ export default {
   animation: up-index 0.3s step-end;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+}
+.blur {
+  filter: blur(4px);
+  transition: filter 0.3s ease;
 }
 </style>

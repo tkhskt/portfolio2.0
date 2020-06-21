@@ -7,16 +7,23 @@
     <main>
       <div class="main-container">
         <section class="left">
-          <keep-alive>
-            <music />
-          </keep-alive>
+          <music :class="{ 'up-music': isHoverTechnology }" />
         </section>
         <section class="right">
           <transition name="technology">
-            <technology v-if="!isMusicSelected" class="component-tecnology" />
+            <technology
+              v-if="!isMusicSelected"
+              class="component-tecnology"
+              :class="{ 'up-technology': isHoverMusic }"
+            />
           </transition>
         </section>
-        <div class="vinyl">
+        <div
+          class="vinyl"
+          :class="{
+            hide: isHoverTechnology || (!isHoverTechnology && !isHoverMusic)
+          }"
+        >
           <vinyl />
         </div>
       </div>
@@ -31,6 +38,7 @@ import Music from '~/components/Music.vue'
 import Technology from '~/components/Technology.vue'
 import Vinyl from '~/components/Vinyl.vue'
 import Loading from '~/components/Loading.vue'
+// import BlackLabel from '~/components/BlackLabel.vue'
 
 export default {
   components: {
@@ -39,16 +47,24 @@ export default {
     Technology,
     Vinyl,
     Loading
+    // BlackLabel
   },
   data() {
     return {}
   },
   computed: {
-    ...mapState('top', ['isMusicSelected', 'isTechnologySelected'])
+    ...mapState('top', [
+      'isMusicSelected',
+      'isTechnologySelected',
+      'isHoverMusic',
+      'isHoverTechnology'
+    ])
   },
   watch: {},
   created() {
     this.$store.dispatch('top/clearSelection')
+    this.$store.dispatch('top/updateMusicPlaying', false)
+    this.$store.dispatch('top/updateMusicPause', false)
   },
   methods: {}
 }
@@ -84,7 +100,7 @@ main {
       .component-tecnology {
         position: absolute;
         right: 0;
-        z-index: 100;
+        // z-index: 50;
       }
       .component-player {
         position: absolute;
@@ -103,6 +119,15 @@ main {
       left: 50%;
       top: 50%;
     }
+  }
+  .up-music {
+    z-index: 200;
+  }
+  .up-technology {
+    z-index: 50;
+  }
+  .hide {
+    display: none;
   }
 }
 </style>
