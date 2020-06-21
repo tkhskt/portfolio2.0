@@ -17,7 +17,10 @@
       }"
       class="hole"
     ></div>
-    <div class="arc" :class="{ 'arc-playing': musicPlaying }"></div>
+    <div
+      class="arc"
+      :class="{ 'arc-playing': musicPlaying, pause: musicPaused }"
+    ></div>
   </div>
 </template>
 <script>
@@ -33,7 +36,8 @@ export default {
       'isHoverMusic',
       'isHoverTechnology',
       'isMusicSelected',
-      'musicPlaying'
+      'musicPlaying',
+      'musicPaused'
     ])
   },
   watch: {},
@@ -273,6 +277,9 @@ export default {
   }
   .arc-playing {
     @include playRecord();
+  }
+  .pause {
+    animation-play-state: paused;
   }
 }
 </style>

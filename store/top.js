@@ -5,7 +5,8 @@ export const state = () => ({
   isMusicSelected: false,
   isTechnologySelected: false,
   comeFromTop: false,
-  musicPlaying: false
+  musicPlaying: false,
+  musicPaused: false
 })
 
 export const actions = {
@@ -35,6 +36,9 @@ export const actions = {
   },
   updateMusicPlaying({ commit }, status) {
     commit('toggleMusicPlaying', status)
+  },
+  updateMusicPause({ commit }, status) {
+    commit('toggleMusicPause', status)
   }
 }
 
@@ -61,5 +65,8 @@ export const mutations = {
   },
   toggleMusicPlaying(state, value) {
     state.musicPlaying = value
+  },
+  toggleMusicPause(state, value) {
+    state.musicPaused = value
   }
 }
