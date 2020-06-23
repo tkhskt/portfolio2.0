@@ -5,8 +5,7 @@
       :class="{
         vinyl_label_hover: isHoverMusic,
         vinyl_label_out: !isHoverMusic && !isMusicSelected,
-        vinyl_label_selected: isMusicSelected,
-        'up-index': isHoverTechnology
+        vinyl_label_selected: isMusicSelected
       }"
       class="label"
     ></div>
@@ -14,8 +13,7 @@
       :class="{
         vinyl_hole_hover: isHoverMusic,
         vinyl_hole_out: !isHoverMusic && !isMusicSelected,
-        vinyl_hole_selected: isMusicSelected,
-        'up-index': isHoverTechnology
+        vinyl_hole_selected: isMusicSelected
       }"
       class="hole"
     ></div>
@@ -283,8 +281,5 @@ export default {
   .pause {
     animation-play-state: paused;
   }
-}
-.up-index {
-  z-index: 250;
 }
 </style>

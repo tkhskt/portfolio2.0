@@ -1,11 +1,24 @@
 <template>
-  <div class="black-bg" :class="{ expand: isHoverTechnology }"></div>
+  <div
+    class="black-bg"
+    :class="{
+      expand: isHoverTechnology,
+      shrink: !isHoverTechnology && !isTechnologySelected
+    }"
+    :style="{ '--width': labelWidth }"
+  ></div>
 </template>
 <script>
 import { mapState } from 'vuex'
 
 export default {
   name: 'BlackLabel',
+  props: {
+    labelWidth: {
+      type: String,
+      default: ''
+    }
+  },
   data() {
     return {}
   },
@@ -14,6 +27,7 @@ export default {
       'isHoverMusic',
       'isHoverTechnology',
       'isMusicSelected',
+      'isTechnologySelected',
       'musicPlaying',
       'musicPaused'
     ])
@@ -29,19 +43,29 @@ export default {
 <style scoped lang="scss">
 @keyframes expand {
   to {
-    width: 50vw;
+    width: calc(50vw + var(--width));
+  }
+}
+
+@keyframes shrink {
+  from {
+    width: calc(50vw + var(--width));
+  }
+  to {
+    width: 0;
   }
 }
 
 .black-bg {
   position: relative;
   height: 24vh;
+  width: 0;
   background-color: $color-black;
   &::before {
     position: absolute;
     height: 5px;
     width: 100%;
-    left: 0;
+    left: calc(-1 * var(--left));
     bottom: 10%;
     content: '';
     background-color: $color-green;
@@ -49,6 +73,10 @@ export default {
 }
 
 .expand {
-  animation: expand 0.3s ease 1 forwards;
+  animation: expand 0.5s ease 1 forwards;
+}
+
+.shrink {
+  animation: shrink 0.5s ease 1 forwards;
 }
 </style>

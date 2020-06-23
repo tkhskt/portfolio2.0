@@ -1,5 +1,10 @@
 <template>
-  <div class="technology-container" :style="styleObject">
+  <div class="technology-container">
+    <div
+      class="technology-bg"
+      :class="{ ccc: isTechnologySelected }"
+      :style="styleObject"
+    ></div>
     <div class="text-container">
       <h1
         class="technology-title"
@@ -12,26 +17,19 @@
       </h1>
       <p
         class="technology-concept"
-        :class="{ 'technology-concept-clicked': isMusicSelected }"
+        :class="{ 'technology-concept-clicked': isTechnologySelected }"
       >
         エレクトロニカ、IDM、アンビエントなどの音楽を愛しています。<br />
         音楽をインターフェースとして、私の脳内世界の情景を聴き手の脳内に映し出すべく日々制作しています。
       </p>
     </div>
-    <div class="label">
-      <black-label />
-    </div>
   </div>
 </template>
 <script>
 import { mapState } from 'vuex'
-import BlackLabel from '~/components/BlackLabel.vue'
 
 export default {
   name: 'Technology',
-  components: {
-    BlackLabel
-  },
   data() {
     return {
       innerWidth: window.innerWidth,
@@ -87,7 +85,12 @@ export default {
     },
     onClickTechnology() {
       if (!this.isTechnologySelected) {
-        // TODO
+        this.$store.dispatch('top/comeFromTop')
+        this.$router.push('/technology')
+        // this.styleObject = {
+        //   width: this.styleObject.width,
+        //   '--width': '0px'
+        // }
       }
     }
   }
@@ -107,6 +110,7 @@ export default {
 @keyframes show-technology-concept-visibility {
   to {
     height: auto;
+    width: 25vw;
     visibility: visible;
   }
 }
@@ -131,20 +135,59 @@ export default {
   }
 }
 
+@keyframes expand {
+  from {
+    width: 0;
+  }
+  to {
+    width: 120%;
+  }
+}
+
+@keyframes shrink {
+  from {
+    width: 120%;
+  }
+  to {
+    width: 0;
+  }
+}
+
+@keyframes move-container {
+  to {
+    width: 42vw;
+  }
+}
+
+@keyframes aaa {
+  from {
+    border-right: solid var(--width) $color-secondary;
+  }
+  to {
+    border-right: solid 0 $color-secondary;
+  }
+}
+
 .technology-container {
   position: relative;
   background-color: $color-secondary;
   height: 100vh;
-  &::after {
-    content: '';
-    position: absolute;
-    display: block;
-    left: calc(-1 * var(--width));
-    top: 0px;
-    width: 0px;
-    height: 0px;
-    border-top: solid 100vh transparent;
-    border-right: solid var(--width) $color-secondary;
+  .technology-bg {
+    position: relative;
+    background-color: $color-secondary;
+    height: 100vh;
+    z-index: 45;
+    &::after {
+      content: '';
+      position: absolute;
+      display: block;
+      left: calc(-1 * var(--width));
+      top: 0px;
+      width: 0px;
+      height: 0px;
+      border-top: solid 100vh transparent;
+      border-right: solid var(--width) $color-secondary;
+    }
   }
   .text-container {
     position: absolute;
@@ -154,15 +197,46 @@ export default {
     z-index: $z-index-title;
     color: $color-white;
     .technology-title {
+      position: relative;
       font-size: $font-size-extra-large;
       font-weight: $font-weight-light;
       user-select: none;
       text-align: right;
+      &::before {
+        position: absolute;
+        content: '';
+        height: 140%;
+        background-color: $color-black;
+        right: -10%;
+        top: -20%;
+        z-index: -1;
+        animation: shrink 0.3s ease 1 forwards;
+      }
+      &:hover::before {
+        right: auto;
+        left: -10%;
+        animation: expand 0.3s ease 1 forwards;
+      }
+      &::after {
+        position: absolute;
+        content: '';
+        height: 5%;
+        background-color: $color-green;
+        right: -10%;
+        bottom: -20%;
+        z-index: -1;
+        animation: shrink 0.3s ease 1 forwards;
+      }
+      &:hover::after {
+        left: -10%;
+        right: auto;
+        animation: expand 0.5s ease 1 forwards;
+      }
     }
     .technology-concept {
       visibility: hidden;
       height: 0;
-      width: 25vw;
+      width: 0;
       line-height: $line-height-description;
       letter-spacing: $letter-spacing-description;
     }
@@ -191,12 +265,8 @@ export default {
     filter: blur(4px);
     transition: filter 0.3s ease;
   }
-  .label {
-    position: absolute;
-    transform: translateY(-50%);
-    left: -20vw;
-    top: 50%;
-    z-index: 30;
+  .ccc {
+    animation: move-container 1s ease 1 forwards;
   }
 }
 </style>

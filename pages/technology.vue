@@ -1,22 +1,16 @@
 <template>
   <div class="container">
-    <loading class="loading" />
+    <loading v-if="!comeFromTop" class="loading" />
     <header>
       <Header class="header" />
     </header>
     <main>
       <div class="main-container">
-        <section class="left">
-          <music />
-        </section>
         <section class="right">
           <transition name="technology">
-            <technology v-if="!isMusicSelected" class="component-tecnology" />
+            <technology class="component-tecnology" />
           </transition>
         </section>
-        <div class="vinyl">
-          <vinyl />
-        </div>
       </div>
     </main>
   </div>
@@ -25,18 +19,18 @@
 <script>
 import { mapState } from 'vuex'
 import Header from '~/components/Header.vue'
-import Music from '~/components/Music.vue'
+// import Music from '~/components/Music.vue'
 import Technology from '~/components/Technology.vue'
-import Vinyl from '~/components/Vinyl.vue'
+// import Vinyl from '~/components/Vinyl.vue'
 import Loading from '~/components/Loading.vue'
 // import BlackLabel from '~/components/BlackLabel.vue'
 
 export default {
   components: {
     Header,
-    Music,
+    // Music,
     Technology,
-    Vinyl,
+    // Vinyl,
     Loading
     // BlackLabel
   },
@@ -48,14 +42,13 @@ export default {
       'isMusicSelected',
       'isTechnologySelected',
       'isHoverMusic',
-      'isHoverTechnology'
+      'isHoverTechnology',
+      'comeFromTop'
     ])
   },
   watch: {},
   created() {
-    this.$store.dispatch('top/clearSelection')
-    this.$store.dispatch('top/updateMusicPlaying', false)
-    this.$store.dispatch('top/updateMusicPause', false)
+    this.$store.dispatch('top/selectTechnology')
   },
   methods: {}
 }
