@@ -13,6 +13,11 @@
         @mouseover="onHoverTitle"
         @mouseleave="onMouseLeaveFromTitle"
       >
+        <span
+          class="label"
+          :class="{ 'label-expand': isHoverTechnology }"
+        ></span>
+        <span class="line" :class="{ 'line-expand': isHoverTechnology }"></span>
         Technology
       </h1>
       <p
@@ -155,7 +160,7 @@ export default {
 
 @keyframes move-container {
   to {
-    width: 42vw;
+    width: 32vw;
   }
 }
 
@@ -202,9 +207,9 @@ export default {
       font-weight: $font-weight-light;
       user-select: none;
       text-align: right;
-      &::before {
+      .label {
         position: absolute;
-        content: '';
+        display: inline-block;
         height: 140%;
         background-color: $color-black;
         right: -10%;
@@ -212,14 +217,14 @@ export default {
         z-index: -1;
         animation: shrink 0.3s ease 1 forwards;
       }
-      &:hover::before {
+      .label-expand {
         right: auto;
         left: -10%;
         animation: expand 0.3s ease 1 forwards;
       }
-      &::after {
+      .line {
         position: absolute;
-        content: '';
+        display: inline-block;
         height: 5%;
         background-color: $color-green;
         right: -10%;
@@ -227,7 +232,7 @@ export default {
         z-index: -1;
         animation: shrink 0.3s ease 1 forwards;
       }
-      &:hover::after {
+      .line-expand {
         left: -10%;
         right: auto;
         animation: expand 0.5s ease 1 forwards;

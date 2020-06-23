@@ -72,6 +72,7 @@ main {
     position: relative;
     height: 100vh;
     overflow: hidden;
+    background-color: $color-primary;
     .left {
       position: absolute;
       width: 50%;
