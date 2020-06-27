@@ -2,10 +2,15 @@
   <div class="technology-container">
     <div
       class="technology-bg"
-      :class="{ ccc: isTechnologySelected }"
+      :class="{ 'move-container': isTechnologySelected }"
       :style="styleObject"
-    ></div>
-    <div class="text-container">
+    >
+      <div class="triangle" :class="{ shrink: isTechnologySelected }"></div>
+    </div>
+    <div
+      class="text-container"
+      :class="{ 'text-container-clicked': isTechnologySelected }"
+    >
       <h1
         class="technology-title"
         :class="{ blur: isHoverMusic }"
@@ -24,8 +29,8 @@
         class="technology-concept"
         :class="{ 'technology-concept-clicked': isTechnologySelected }"
       >
-        エレクトロニカ、IDM、アンビエントなどの音楽を愛しています。<br />
-        音楽をインターフェースとして、私の脳内世界の情景を聴き手の脳内に映し出すべく日々制作しています。
+        モバイルやウェブの開発をしています。<br />
+        技術を用いて日常の様々な課題の解決方法や、新しい体験について日々研究しています。
       </p>
     </div>
   </div>
@@ -41,7 +46,8 @@ export default {
       innderHeight: window.innerHeight,
       styleObject: {
         width: '0px',
-        '--width': '0px'
+        '--width': '0px',
+        '--w': '0px'
       }
     }
   },
@@ -71,13 +77,17 @@ export default {
         Math.tan((70 * Math.PI) / 180)}px`
       this.styleObject = {
         width: updatedWidth,
-        '--width': borderWidth
+        '--width': borderWidth,
+        '--w': updatedWidth
       }
     },
     handleResize() {
       // resizeのたびにこいつが発火するので、ここでやりたいことをやる
       this.innerWidth = window.innerWidth
       this.innderHeight = window.innerHeight
+      if (this.isTechnologySelected) {
+        return
+      }
       this.setContainerWidth()
     },
     onHoverTitle() {
@@ -92,10 +102,6 @@ export default {
       if (!this.isTechnologySelected) {
         this.$store.dispatch('top/comeFromTop')
         this.$router.push('/technology')
-        // this.styleObject = {
-        //   width: this.styleObject.width,
-        //   '--width': '0px'
-        // }
       }
     }
   }
@@ -103,8 +109,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@keyframes show-music-concept-opacity {
-  50% {
+@keyframes show-technology-concept-opacity {
+  from {
     opacity: 0;
   }
   to {
@@ -160,16 +166,27 @@ export default {
 
 @keyframes move-container {
   to {
-    width: 32vw;
+    width: 32vw + $padding-horizontal;
   }
 }
 
-@keyframes aaa {
+@keyframes move-triangle {
   from {
     border-right: solid var(--width) $color-secondary;
   }
   to {
     border-right: solid 0 $color-secondary;
+  }
+}
+
+@keyframes move-text-container {
+  from {
+    width: 23vw; // FIXME いい感じにしたい
+  }
+  to {
+    transform: translateY(0);
+    width: 25vw;
+    top: 14vh;
   }
 }
 
@@ -182,16 +199,18 @@ export default {
     background-color: $color-secondary;
     height: 100vh;
     z-index: 45;
-    &::after {
-      content: '';
+    .triangle {
       position: absolute;
       display: block;
-      left: calc(-1 * var(--width));
+      right: 100%;
       top: 0px;
       width: 0px;
       height: 0px;
       border-top: solid 100vh transparent;
       border-right: solid var(--width) $color-secondary;
+    }
+    .shrink {
+      animation: move-triangle 1.5s ease 1 forwards;
     }
   }
   .text-container {
@@ -206,7 +225,7 @@ export default {
       font-size: $font-size-extra-large;
       font-weight: $font-weight-light;
       user-select: none;
-      text-align: right;
+      // text-align: left;
       .label {
         position: absolute;
         display: inline-block;
@@ -247,30 +266,21 @@ export default {
     }
     .technology-concept-clicked {
       animation: show-technology-concept-visibility 0.5s step-end,
-        show-technology-concept-opacity 1s ease,
+        show-technology-concept-opacity 0.5s ease 0.5s,
         technology-concept-margin 0.5s step-end;
+      // animation-delay: 1s;
       animation-iteration-count: 1;
       animation-fill-mode: forwards;
     }
   }
-  // .technology-text {
-  //   position: absolute;
-  //   transform: translateY(-50%);
-  //   top: 50%;
-  //   z-index: 1;
-  //   font-size: $font-size-extra-large;
-  //   font-weight: $font-weight-light;
-  //   color: $color-white;
-  //   right: $padding-horizontal;
-  //   text-align: center;
-  //   user-select: none;
-  //   transition: filter 0.3s ease;
-  // }
+  .text-container-clicked {
+    animation: move-text-container 0.5s ease 1 forwards;
+  }
   .blur {
     filter: blur(4px);
     transition: filter 0.3s ease;
   }
-  .ccc {
+  .move-container {
     animation: move-container 1s ease 1 forwards;
   }
 }
