@@ -3,3 +3,8 @@ body {
     'ヒラギノ角ゴシック', YuGothic, 'Yu Gothic', 'メイリオ', Meiryo,
     'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
 }
+
+::selection {
+  color: $color-black;
+  background: $color-gray;
+}

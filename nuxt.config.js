@@ -68,6 +68,10 @@ export default {
     },
     extend(config, ctx) {
       config.module.rules.push({
+        test: /\.(vert|frag|glsl)$/i,
+        use: ['raw-loader']
+      })
+      config.module.rules.push({
         test: /\.(ogg|mp3|wav|mpe?g)$/i,
         loader: 'file-loader',
         options: {

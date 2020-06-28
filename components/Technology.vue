@@ -29,8 +29,8 @@
         class="technology-concept"
         :class="{ 'technology-concept-clicked': isTechnologySelected }"
       >
-        モバイルやウェブの開発をしています。<br />
-        技術を用いて日常の様々な課題の解決方法や、新しい体験について日々研究しています。
+        モバイルやウェブの開発をしています。
+        <br />技術を用いて日常の様々な課題の解決方法や、新しい体験について日々研究しています。
       </p>
     </div>
   </div>
@@ -46,8 +46,7 @@ export default {
       innderHeight: window.innerHeight,
       styleObject: {
         width: '0px',
-        '--width': '0px',
-        '--w': '0px'
+        '--width': '0px'
       }
     }
   },
@@ -77,8 +76,7 @@ export default {
         Math.tan((70 * Math.PI) / 180)}px`
       this.styleObject = {
         width: updatedWidth,
-        '--width': borderWidth,
-        '--w': updatedWidth
+        '--width': borderWidth
       }
     },
     handleResize() {
@@ -129,12 +127,6 @@ export default {
 @keyframes technology-concept-margin {
   to {
     margin-top: 6vh;
-  }
-}
-
-@keyframes clear {
-  to {
-    transform: rotate(180deg);
   }
 }
 
@@ -210,7 +202,7 @@ export default {
       border-right: solid var(--width) $color-secondary;
     }
     .shrink {
-      animation: move-triangle 1.5s ease 1 forwards;
+      animation: move-triangle 1s ease 1 forwards;
     }
   }
   .text-container {
@@ -281,7 +273,7 @@ export default {
     transition: filter 0.3s ease;
   }
   .move-container {
-    animation: move-container 1s ease 1 forwards;
+    animation: move-container 0.5s ease 1 forwards;
   }
 }
 </style>

@@ -6,6 +6,9 @@
     </header>
     <main>
       <div class="main-container">
+        <section class="left">
+          <skill class="component-skill" />
+        </section>
         <section class="right">
           <transition name="technology">
             <technology class="component-tecnology" />
@@ -19,20 +22,16 @@
 <script>
 import { mapState } from 'vuex'
 import Header from '~/components/Header.vue'
-// import Music from '~/components/Music.vue'
 import Technology from '~/components/Technology.vue'
-// import Vinyl from '~/components/Vinyl.vue'
 import Loading from '~/components/Loading.vue'
-// import BlackLabel from '~/components/BlackLabel.vue'
+import Skill from '~/components/Skill.vue'
 
 export default {
   components: {
     Header,
-    // Music,
     Technology,
-    // Vinyl,
-    Loading
-    // BlackLabel
+    Loading,
+    Skill
   },
   data() {
     return {}
@@ -75,12 +74,12 @@ main {
     background-color: $color-primary;
     .left {
       position: absolute;
-      width: 50%;
+      width: 53%;
     }
     .right {
       position: absolute;
       right: 0;
-      width: 50%;
+      width: 47%;
       height: 100%;
       .component-tecnology {
         position: absolute;
@@ -97,12 +96,6 @@ main {
       .technology-leave-to {
         opacity: 0;
       }
-    }
-    .vinyl {
-      position: absolute;
-      transform: translate(-50%, -50%);
-      left: 50%;
-      top: 50%;
     }
   }
   .hide {
