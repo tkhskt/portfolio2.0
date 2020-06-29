@@ -101,7 +101,12 @@ export default class Gl {
     window.cancelAnimationFrame(this.animationRequestId)
     this.renderer.domElement = null
     this.renderer.dispose()
+    this.scene.dispose()
+    this.material.dispose()
+    this.geometry.dispose()
     this.renderer = null
+    this.composer = null
+    this.material = null
   }
 
   run() {
@@ -116,13 +121,11 @@ export default class Gl {
     if (this.nowChange && this.changeFrame < 15) {
       this.customPass.curF = 0
       this.changeFrame = this.changeFrame + 1
-      this.customPass.needsUpdate = true
     }
     if (this.changeFrame >= 15) {
       this.customPass.curF = 119
       this.nowChange = false
       this.changeFrame = 0
-      this.customPass.needsUpdate = true
     }
     this.material.uniforms.uTime.value = this.clock.getElapsedTime()
     this.rot += 0.5 // 毎フレーム角度を0.5度ずつ足していく

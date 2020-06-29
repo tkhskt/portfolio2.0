@@ -1,9 +1,6 @@
 <template>
   <div class="container">
     <loading v-if="!comeFromTop" class="loading" />
-    <header>
-      <Header class="header" />
-    </header>
     <main>
       <div class="main-container">
         <section class="left">
@@ -21,14 +18,12 @@
 
 <script>
 import { mapState } from 'vuex'
-import Header from '~/components/Header.vue'
 import Technology from '~/components/Technology.vue'
 import Loading from '~/components/Loading.vue'
 import Skill from '~/components/Skill.vue'
 
 export default {
   components: {
-    Header,
     Technology,
     Loading,
     Skill
@@ -58,13 +53,6 @@ export default {
   position: fixed;
   top: 0;
   z-index: 999;
-}
-
-header {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  z-index: 800;
 }
 main {
   .main-container {

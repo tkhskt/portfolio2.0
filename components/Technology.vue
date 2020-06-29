@@ -255,6 +255,7 @@ export default {
       width: 0;
       line-height: $line-height-description;
       letter-spacing: $letter-spacing-description;
+      font-size: $font-size-normal;
     }
     .technology-concept-clicked {
       animation: show-technology-concept-visibility 0.5s step-end,

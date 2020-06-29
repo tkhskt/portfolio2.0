@@ -2,7 +2,7 @@
   <div class="header-container">
     <nuxt-link to="/" class="header-title">Keita Takahashi</nuxt-link>
     <span class="circle"></span>
-    <nuxt-link to="/" class="about">about</nuxt-link>
+    <nuxt-link to="/about" class="about">about</nuxt-link>
   </div>
 </template>
 <style scoped lang="scss">

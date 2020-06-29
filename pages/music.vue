@@ -1,9 +1,6 @@
 <template>
   <div class="container">
     <loading v-if="!comeFromTop" class="loading" />
-    <header>
-      <Header class="header" />
-    </header>
     <main>
       <div class="main-container">
         <section class="left">
@@ -24,7 +21,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import Header from '~/components/Header.vue'
 import Music from '~/components/Music.vue'
 import Player from '~/components/Player.vue'
 import Vinyl from '~/components/Vinyl.vue'
@@ -32,7 +28,6 @@ import Loading from '~/components/Loading.vue'
 
 export default {
   components: {
-    Header,
     Music,
     Player,
     Vinyl,
@@ -65,12 +60,6 @@ export default {
   z-index: 999;
 }
 
-header {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  z-index: 800;
-}
 main {
   .main-container {
     position: relative;

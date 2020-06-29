@@ -128,6 +128,7 @@ export default {
   height: 60px;
   z-index: 200;
   right: $padding-horizontal;
+  cursor: pointer;
   .play-button {
     border: 0;
     background: transparent;

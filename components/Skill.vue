@@ -172,6 +172,7 @@ export default {
     p {
       user-select: none;
       color: $color-black;
+      font-size: $font-size-normal;
     }
     .progress-bar {
       position: relative;
@@ -205,6 +206,7 @@ export default {
     .arrow-container {
       width: calc(4vmin * 0.76);
       height: calc(4vmin * 1.28);
+      cursor: pointer;
     }
     .arrow {
       border-radius: 2.5px;

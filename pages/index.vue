@@ -1,9 +1,6 @@
 <template>
   <div class="container">
     <loading class="loading" />
-    <header>
-      <Header class="header" />
-    </header>
     <main>
       <div class="main-container">
         <section class="left">
@@ -24,21 +21,17 @@
 
 <script>
 import { mapState } from 'vuex'
-import Header from '~/components/Header.vue'
 import Music from '~/components/Music.vue'
 import Technology from '~/components/Technology.vue'
 import Vinyl from '~/components/Vinyl.vue'
 import Loading from '~/components/Loading.vue'
-// import BlackLabel from '~/components/BlackLabel.vue'
 
 export default {
   components: {
-    Header,
     Music,
     Technology,
     Vinyl,
     Loading
-    // BlackLabel
   },
   data() {
     return {}
@@ -66,13 +59,6 @@ export default {
   position: fixed;
   top: 0;
   z-index: 999;
-}
-
-header {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  z-index: 800;
 }
 main {
   .main-container {
