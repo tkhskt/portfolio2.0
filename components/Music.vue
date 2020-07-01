@@ -10,7 +10,11 @@
     >
       <h1
         class="music-title"
-        :class="{ blur: isHoverTechnology }"
+        :class="{
+          blur: isHoverTechnology,
+          'cursor-default': isMusicSelected,
+          'cursor-pointer': !isMusicSelected
+        }"
         @click="onClickMusic"
         @mouseover="onHoverTitle"
         @mouseleave="onMouseLeaveFromTitle"
@@ -181,6 +185,12 @@ export default {
     animation: container-up 0.5s ease;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
+  }
+  .cursor-default {
+    cursor: default;
+  }
+  .cursor-pointer {
+    cursor: pointer;
   }
 }
 

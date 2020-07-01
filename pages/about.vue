@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div class="curtain"></div>
-    <loading v-if="!comeFromTop" class="loading" />
     <div class="text-container">
       <div class="name-container">
         <h1>Keita Takahashi</h1>
@@ -14,9 +13,9 @@
       </div>
       <div class="description-container">
         <p>
-          東京都在住<br />
+          高橋啓太：東京都在住<br />
           地元・北海道の大学を卒業後、大手ファッションECサービスのAndroidアプリケーション開発に従事。<br />
-          個人ではWeb/Mobileアプリケーションの開発の傍ら、音楽制作も行っている。
+          個人ではMobile/Webアプリケーションの開発の傍ら、音楽制作も行っている。
         </p>
         <div class="link-container">
           <div class="github link">
@@ -66,7 +65,6 @@ export default {
       fromTop: true
     }
   },
-  transition: 'about',
   computed: {
     ...mapState('top', [
       'isMusicSelected',

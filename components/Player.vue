@@ -124,8 +124,10 @@ export default {
 .button-container {
   position: absolute;
   bottom: 6vh;
-  width: 60px;
-  height: 60px;
+  // width: 60px;
+  // height: 60px;
+  width: 3vw;
+  height: 3vw;
   z-index: 200;
   right: $padding-horizontal;
   cursor: pointer;
@@ -141,11 +143,13 @@ export default {
 
     // play state
     border-style: solid;
-    border-width: 30px 0 30px 60px;
+    // border-width: 30px 0 30px 60px;
+    border-width: 1.5vw 0 1.5vw 3vw;
 
     &.paused {
       border-style: double;
-      border-width: 0px 0 0px 60px;
+      // border-width: 0px 0 0px 60px;
+      border-width: 0 0 0px 3vw;
     }
 
     &:hover {

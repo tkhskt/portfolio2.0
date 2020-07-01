@@ -13,7 +13,11 @@
     >
       <h1
         class="technology-title"
-        :class="{ blur: isHoverMusic }"
+        :class="{
+          blur: isHoverMusic,
+          'cursor-default': isTechnologySelected,
+          'cursor-pointer': !isTechnologySelected
+        }"
         @click="onClickTechnology"
         @mouseover="onHoverTitle"
         @mouseleave="onMouseLeaveFromTitle"
@@ -275,6 +279,12 @@ export default {
   }
   .move-container {
     animation: move-container 0.5s ease 1 forwards;
+  }
+  .cursor-default {
+    cursor: default;
+  }
+  .cursor-pointer {
+    cursor: pointer;
   }
 }
 </style>

@@ -57,7 +57,7 @@ export default {
 .loading {
   position: fixed;
   top: 0;
-  z-index: 999;
+  z-index: $z-index-loading;
 }
 
 main {
