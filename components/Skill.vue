@@ -209,15 +209,15 @@ export default {
       cursor: pointer;
     }
     .arrow {
-      border-radius: 2.5px;
-      height: 5px;
+      border-radius: 0.15vmin;
+      height: 0.3vmin;
       width: 4vmin;
-      max-width: 70px;
+      // max-width: 70px;
       background-color: $color-green;
       position: relative;
       top: 50%;
       transform-origin: left center;
-      transform: rotate(-40deg) translateX(-1.5px) translateY(-1.5px);
+      transform: rotate(-40deg) translateX(-0.15vmin) translateY(-0.15vmin);
       &::before {
         position: absolute;
         width: 100%;
@@ -225,10 +225,10 @@ export default {
         content: '';
         left: 0;
         top: 0;
-        border-radius: 2.5px;
+        border-radius: 0.15vmin;
         background-color: $color-green;
         transform-origin: left center;
-        transform: rotate(80deg) translateX(-1.5px) translateY(-1.5px);
+        transform: rotate(80deg) translateX(-0.13vmin) translateY(-0.13vmin);
       }
     }
     .right-arrow-container {

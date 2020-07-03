@@ -1,21 +1,29 @@
 <template>
   <div class="container">
     <loading class="loading" />
-    <main>
-      <div class="main-container">
-        <section class="left">
-          <music />
-        </section>
-        <section class="right">
-          <transition name="technology">
-            <technology v-if="!isMusicSelected" class="component-tecnology" />
-          </transition>
-        </section>
-        <div class="vinyl">
-          <vinyl />
+    <div v-if="$device.isDesktop">
+      <main>
+        <div class="main-container">
+          <section class="left">
+            <music />
+          </section>
+          <section class="right">
+            <transition name="technology">
+              <technology v-if="!isMusicSelected" class="component-tecnology" />
+            </transition>
+          </section>
+          <div class="vinyl">
+            <vinyl />
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
+    <div v-else>
+      <main>
+        <mobile-top class="mobile-top mobile-component" />
+        <mobile-music class="mobile-music mobile-component" />
+      </main>
+    </div>
   </div>
 </template>
 
@@ -25,13 +33,17 @@ import Music from '~/components/Music.vue'
 import Technology from '~/components/Technology.vue'
 import Vinyl from '~/components/Vinyl.vue'
 import Loading from '~/components/Loading.vue'
+import MobileTop from '~/components/mobile/MobileTop.vue'
+import MobileMusic from '~/components/mobile/MobileMusic.vue'
 
 export default {
   components: {
     Music,
     Technology,
     Vinyl,
-    Loading
+    Loading,
+    MobileTop,
+    MobileMusic
   },
   data() {
     return {}
@@ -99,6 +111,11 @@ main {
   }
   .hide {
     display: none;
+  }
+
+  .mobile-component {
+    width: 100vw;
+    height: 100vh;
   }
 }
 </style>

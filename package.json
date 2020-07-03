@@ -18,6 +18,7 @@
     "gsap": "^3.3.4",
     "howler": "^2.2.0",
     "nuxt": "^2.0.0",
+    "nuxt-device-detect": "^1.1.5",
     "raw-loader": "^4.0.1",
     "three": "^0.118.1"
   },

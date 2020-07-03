@@ -11,9 +11,8 @@ $font-size-normal: calc(12px + 0.16vw);
 $font-size-small: calc(8px + .26vw);
 $font-weight-light: 300;
 
-$padding-horizontal: 15vw;
 
-$max-width-text-container: 650px;
+$padding-horizontal: 15vw;
 
 $line-height-description: 2;
 $letter-spacing-description: 0.06em;
@@ -21,3 +20,22 @@ $letter-spacing-description: 0.06em;
 $z-index-title: 500;
 
 $z-index-loading: 700;
+
+
+$padding-horizontal-mobile: 3vmin;
+$font-size-extra-large-mobile: 10vmin;
+$font-size-normal: 3.5vmin;
+
+
+$max-width-text-container: 650px;
+
+$breakpoints: (
+  'sm': 'screen and (max-width: 559px)',
+  'md': 'screen and (max-width: 959px)'
+) !default;
+
+@mixin mq($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}

@@ -91,12 +91,6 @@ export default {
         this.$store.dispatch('top/comeFromTop')
         this.$router.push('/music')
       }
-
-      // history.pushState(
-      //   {},
-      //   null,
-      //   this.$route.path + '#' + encodeURIComponent('music')
-      // )
     }
   }
 }

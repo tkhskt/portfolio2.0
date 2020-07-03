@@ -68,6 +68,10 @@ export default {
   padding: 30px $padding-horizontal;
   display: flex;
   align-items: center;
+  @include mq(md) {
+    padding: 4vw $padding-horizontal-mobile;
+  }
+  transition: padding 0.1s ease;
   .header-title {
     float: left;
     min-width: 126px;
