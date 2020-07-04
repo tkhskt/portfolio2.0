@@ -108,16 +108,6 @@ export default {
   background-color: $color-primary;
   width: 100%;
   height: 100vh;
-
-  // .curtain {
-  //   position: absolute;
-  //   height: 100%;
-  //   right: 50%;
-  //   top: 0;
-  //   background-color: $color-primary;
-  //   z-index: 4;
-  //   // animation: curtain-animation 1.5s linear forwards 1;
-  // }
   .text-container {
     display: flex;
     justify-content: space-between;
@@ -126,8 +116,15 @@ export default {
     width: 100%;
     padding: 0 $padding-horizontal;
     animation: opacity-animation 1s ease forwards 1;
+    @include mq(md) {
+      justify-content: flex-start;
+      flex-direction: column;
+    }
     .name-container {
       margin: auto 0;
+      @include mq(md) {
+        margin: 20vmin 0 0 0;
+      }
       h1 {
         font-size: $font-size-extra-large;
         font-weight: normal;
@@ -137,12 +134,12 @@ export default {
         margin-top: 10px;
         line-height: 2;
         letter-spacing: $letter-spacing-description;
-        font-size: $font-size-normal;
+        font-size: $font-size-large;
       }
     }
     .description-container {
       margin: auto 0;
-      padding-top: 10vmin;
+      padding-top: 8vmin;
       width: 25vw;
       max-width: $max-width-text-container;
       min-width: 350px;
@@ -150,6 +147,9 @@ export default {
       letter-spacing: $letter-spacing-description;
       font-size: $font-size-normal;
       color: $color-black;
+      @include mq(md) {
+        margin: 0;
+      }
     }
     .link-container {
       margin-top: 40px;
