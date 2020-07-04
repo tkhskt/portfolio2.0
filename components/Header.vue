@@ -62,7 +62,7 @@ export default {
       this.hoverAbout = false
     },
     handleScroll() {
-      if (window.innerWidth < 559) {
+      if (window.innerWidth < 959) {
         this.isMobile = true
       } else {
         this.isMobile = false
