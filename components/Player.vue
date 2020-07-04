@@ -41,7 +41,13 @@ export default {
     ])
   },
   watch: {},
-  created() {},
+  created() {
+    this.howl = new Howl({
+      src: [require('@/assets/mp3/tub.mp3')],
+      loop: true,
+      preload: true
+    })
+  },
   mounted() {
     this.$nextTick(() => {
       window.addEventListener('resize', this.handleResize)
@@ -80,7 +86,6 @@ export default {
           loop: true,
           preload: true
         })
-        this.howl.load()
       }
       const track = this.howl.play()
       this.howl.fade(0.5, 1, 2000, track)
