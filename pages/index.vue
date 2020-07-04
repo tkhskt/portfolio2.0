@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <loading class="loading" />
-    <div v-if="$device.isDesktop">
+    <div v-if="!isMobile">
       <main>
         <div class="main-container">
           <section class="left">
@@ -52,7 +52,9 @@ export default {
     MobileAbout
   },
   data() {
-    return {}
+    return {
+      isMobile: false
+    }
   },
   computed: {
     ...mapState('top', [
@@ -63,12 +65,28 @@ export default {
     ])
   },
   watch: {},
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.handleResize)
+    })
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize)
+  },
   created() {
     this.$store.dispatch('top/clearSelection')
     this.$store.dispatch('top/updateMusicPlaying', false)
     this.$store.dispatch('top/updateMusicPause', false)
   },
-  methods: {}
+  methods: {
+    handleResize() {
+      if (window.innerWidth < 559) {
+        this.isMobile = true
+      } else {
+        this.isMobile = false
+      }
+    }
+  }
 }
 </script>
 

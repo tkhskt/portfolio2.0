@@ -5,11 +5,11 @@
       class="header-title"
       :class="{
         'white-text': white,
-        'hide-title': hideTitle && !$device.isDesktop
+        'hide-title': hideTitle && isMobile
       }"
       >Keita Takahashi</nuxt-link
     >
-    <template v-if="displayAbout && $device.isDesktop">
+    <template v-if="displayAbout && !isMobile">
       <span class="circle" :class="{ hover: hoverAbout }"></span>
       <nuxt-link
         to="/about"
@@ -30,7 +30,8 @@ export default {
       displayAbout: true,
       hoverAbout: false,
       white: false,
-      hideTitle: true
+      hideTitle: true,
+      isMobile: false
     }
   },
   watch: {
@@ -61,6 +62,11 @@ export default {
       this.hoverAbout = false
     },
     handleScroll() {
+      if (window.innerWidth < 559) {
+        this.isMobile = true
+      } else {
+        this.isMobile = false
+      }
       const scrollY = window.pageYOffset
       const techTop = window.innerHeight * 2 - 35
       const musicTop = window.innerHeight - 35
