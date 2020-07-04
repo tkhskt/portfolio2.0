@@ -9,8 +9,8 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
-        hid: 'description',
-        name: 'description',
+        hid: 'config',
+        name: 'Keita Takahashi',
         content: 'thorn in my side'
       }
     ],
