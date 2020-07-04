@@ -20,7 +20,10 @@
     "nuxt": "^2.0.0",
     "nuxt-device-detect": "^1.1.5",
     "raw-loader": "^4.0.1",
-    "three": "^0.118.1"
+    "swiper": "^6.0.0",
+    "three": "^0.118.1",
+    "vue-awesome-swiper": "^4.1.1",
+    "vue-scrollto": "^2.18.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",

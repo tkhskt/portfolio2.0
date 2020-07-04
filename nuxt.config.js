@@ -23,11 +23,18 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['@/assets/css/ress.css', '@/assets/css/base.scss'],
+  css: [
+    'swiper/swiper-bundle.css',
+    '@/assets/css/ress.css',
+    '@/assets/css/base.scss'
+  ],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    { src: '~plugins/vue-awesome-swiper', ssr: false },
+    '~plugins/vue-scrollto'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -60,6 +67,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
+    vendor: ['vue-awesome-swiper'],
     loaders: {
       vue: {
         transformAssetUrls: {

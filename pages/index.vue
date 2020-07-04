@@ -20,8 +20,10 @@
     </div>
     <div v-else>
       <main>
-        <mobile-top class="mobile-top mobile-component" />
+        <mobile-top id="mobile-top" class="mobile-top mobile-component" />
         <mobile-music class="mobile-music mobile-component" />
+        <mobile-technology class="mobile-technology mobile-component" />
+        <mobile-about id="mobile-about" class="mobile-about mobile-component" />
       </main>
     </div>
   </div>
@@ -35,6 +37,8 @@ import Vinyl from '~/components/Vinyl.vue'
 import Loading from '~/components/Loading.vue'
 import MobileTop from '~/components/mobile/MobileTop.vue'
 import MobileMusic from '~/components/mobile/MobileMusic.vue'
+import MobileTechnology from '~/components/mobile/MobileTechnology.vue'
+import MobileAbout from '~/components/mobile/MobileAbout.vue'
 
 export default {
   components: {
@@ -43,7 +47,9 @@ export default {
     Vinyl,
     Loading,
     MobileTop,
-    MobileMusic
+    MobileMusic,
+    MobileTechnology,
+    MobileAbout
   },
   data() {
     return {}
@@ -116,6 +122,10 @@ main {
   .mobile-component {
     width: 100vw;
     height: 100vh;
+  }
+  .mobile-about {
+    height: auto;
+    min-height: 100vh;
   }
 }
 </style>

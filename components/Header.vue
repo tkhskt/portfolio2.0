@@ -1,7 +1,15 @@
 <template>
   <div class="header-container">
-    <nuxt-link to="/" class="header-title">Keita Takahashi</nuxt-link>
-    <template v-if="displayAbout">
+    <nuxt-link
+      to="/"
+      class="header-title"
+      :class="{
+        'white-text': white,
+        'hide-title': hideTitle && !$device.isDesktop
+      }"
+      >Keita Takahashi</nuxt-link
+    >
+    <template v-if="displayAbout && $device.isDesktop">
       <span class="circle" :class="{ hover: hoverAbout }"></span>
       <nuxt-link
         to="/about"
@@ -20,7 +28,9 @@ export default {
   data() {
     return {
       displayAbout: true,
-      hoverAbout: false
+      hoverAbout: false,
+      white: false,
+      hideTitle: true
     }
   },
   watch: {
@@ -28,6 +38,16 @@ export default {
       this.hoverAbout = false
       this.displayAbout = to.name !== 'about'
     }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener('scroll', this.handleScroll)
+      window.addEventListener('resize', this.handleScroll)
+    })
+  },
+  beforeDestroy() {
+    window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('resize', this.handleScroll)
   },
   created() {
     this.hoverAbout = false
@@ -39,6 +59,22 @@ export default {
     },
     onMouseLeaveFromAbout() {
       this.hoverAbout = false
+    },
+    handleScroll() {
+      const scrollY = window.pageYOffset
+      const techTop = window.innerHeight * 2 - 35
+      const musicTop = window.innerHeight - 35
+      const aboutTop = window.innerHeight * 3 - 35
+      if (scrollY > techTop) {
+        this.white = true
+      } else {
+        this.white = false
+      }
+      if (scrollY <= musicTop || scrollY >= aboutTop) {
+        this.hideTitle = true
+      } else {
+        this.hideTitle = false
+      }
     }
   }
 }
@@ -81,6 +117,8 @@ export default {
     user-select: none;
     color: $color-black;
     text-decoration: none;
+    opacity: 1;
+    transition: opacity 0.1s linear;
   }
   .circle {
     display: inline-block;
@@ -104,6 +142,13 @@ export default {
   }
   .hover {
     animation: hoverAbout 0.1s linear forwards;
+  }
+  .white-text {
+    color: $color-white;
+  }
+  .hide-title {
+    opacity: 0;
+    transition: opacity 0.1s linear;
   }
 }
 </style>

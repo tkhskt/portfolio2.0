@@ -20,27 +20,14 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
   components: {},
   data() {
     return {}
   },
-  computed: {
-    ...mapState('top', [
-      'isMusicSelected',
-      'isTechnologySelected',
-      'isHoverMusic',
-      'isHoverTechnology'
-    ])
-  },
+  computed: {},
   watch: {},
-  created() {
-    this.$store.dispatch('top/clearSelection')
-    this.$store.dispatch('top/updateMusicPlaying', false)
-    this.$store.dispatch('top/updateMusicPause', false)
-  },
+  created() {},
   methods: {}
 }
 </script>
@@ -104,11 +91,13 @@ export default {
   }
   .text-container {
     position: absolute;
-    bottom: 10vw;
+    bottom: 10vmin;
     padding: 0 $padding-horizontal-mobile;
     p {
-      font-size: $font-size-normal;
+      font-size: $font-size-normal-mobile;
       color: $color-black;
+      line-height: $line-height-description;
+      letter-spacing: $letter-spacing-description;
     }
   }
 }
