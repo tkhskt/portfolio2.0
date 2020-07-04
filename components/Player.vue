@@ -76,7 +76,7 @@ export default {
       }
       if (this.howl == null) {
         this.howl = new Howl({
-          src: ['/mp3/tub.mp3'],
+          src: [require('@/assets/mp3/tub.mp3')],
           loop: true,
           preload: true
         })
