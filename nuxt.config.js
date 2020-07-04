@@ -19,7 +19,7 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: '#499167' },
   /*
    ** Global CSS
    */
@@ -33,7 +33,8 @@ export default {
    */
   plugins: [
     { src: '~plugins/vue-awesome-swiper', ssr: false },
-    '~plugins/vue-scrollto'
+    '~plugins/vue-scrollto',
+    '~plugins/howler'
   ],
   /*
    ** Nuxt.js dev-modules

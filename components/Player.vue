@@ -15,7 +15,6 @@
   </div>
 </template>
 <script>
-import { Howl } from 'howler'
 import { mapState } from 'vuex'
 
 export default {
@@ -27,8 +26,7 @@ export default {
       styleObject: {
         width: '0px',
         '--width': '0px'
-      },
-      howl: null
+      }
     }
   },
   computed: {
@@ -41,13 +39,7 @@ export default {
     ])
   },
   watch: {},
-  created() {
-    this.howl = new Howl({
-      src: [require('@/assets/mp3/tub.mp3')],
-      loop: true,
-      preload: true
-    })
-  },
+  created() {},
   mounted() {
     this.$nextTick(() => {
       window.addEventListener('resize', this.handleResize)
@@ -80,26 +72,26 @@ export default {
         this.pause()
         return
       }
-      if (this.howl == null) {
-        this.howl = new Howl({
-          src: [require('@/assets/mp3/tub.mp3')],
-          loop: true,
-          preload: true
-        })
-      }
-      const track = this.howl.play()
-      this.howl.fade(0.5, 1, 2000, track)
-      this.howl.fade(0, 0.5, 2000, track)
+      // if (this.$howler == null) {
+      //   this.howl = new Howl({
+      //     src: [require('@/assets/mp3/tub.mp3')],
+      //     loop: true,
+      //     preload: true
+      //   })
+      // }
+      const track = this.$howler.play()
+      this.$howler.fade(0.5, 1, 2000, track)
+      this.$howler.fade(0, 0.5, 2000, track)
       this.$store.dispatch('top/updateMusicPlaying', true)
       this.$store.dispatch('top/updateMusicPause', false)
     },
     pause() {
-      this.howl.pause()
+      this.$howler.pause()
       this.$store.dispatch('top/updateMusicPause', true)
     },
     stop() {
       if (this.musicPlaying) {
-        this.howl.stop()
+        this.$howler.stop()
         this.$store.dispatch('top/updateMusicPlaying', false)
       }
     }

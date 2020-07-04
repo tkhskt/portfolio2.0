@@ -11,11 +11,5 @@ import 'swiper/css/swiper.css'
 // Swiper modules
 SwiperClass.use([Pagination, Mousewheel, Autoplay])
 
-// -------------------------------------------------
 // Global use
 Vue.use(getAwesomeSwiper(SwiperClass))
-
-// import Vue from 'vue'
-// import VueAwesomeSwiper from 'vue-awesome-swiper'
-
-// Vue.use(VueAwesomeSwiper)
