@@ -24,7 +24,7 @@ export default {
    ** Global CSS
    */
   css: [
-    'swiper/swiper-bundle.css',
+    'swiper/css/swiper.css',
     '@/assets/css/ress.css',
     '@/assets/css/base.scss'
   ],
@@ -50,8 +50,12 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
-    'nuxt-device-detect'
+    'nuxt-device-detect',
+    'nuxt-purgecss'
   ],
+  purgeCSS: {
+    whitelistPatternsChildren: [/swiper/]
+  },
   styleResources: {
     scss: ['@assets/css/_constants.scss']
   },

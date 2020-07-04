@@ -70,6 +70,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '@/assets/css/swiper.min.css';
+.swiper-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  transition-property: transform;
+  box-sizing: content-box;
+}
 .container {
   position: relative;
   height: 100%;

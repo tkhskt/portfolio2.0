@@ -1,7 +1,7 @@
 {
-  "name": "portfolio",
+  "name": "KeitaTakahashi",
   "version": "1.0.0",
-  "description": "my portfolio",
+  "description": "thorn in my side",
   "author": "tkhskt",
   "private": true,
   "scripts": {
@@ -19,8 +19,9 @@
     "howler": "^2.2.0",
     "nuxt": "^2.0.0",
     "nuxt-device-detect": "^1.1.5",
+    "nuxt-purgecss": "^1.0.0",
     "raw-loader": "^4.0.1",
-    "swiper": "^6.0.0",
+    "swiper": "5.4.5",
     "three": "^0.118.1",
     "vue-awesome-swiper": "^4.1.1",
     "vue-scrollto": "^2.18.1"

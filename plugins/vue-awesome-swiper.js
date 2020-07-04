@@ -4,8 +4,9 @@ import {
   Pagination,
   Mousewheel,
   Autoplay
-} from 'swiper/core'
+} from 'swiper/js/swiper.esm'
 import getAwesomeSwiper from 'vue-awesome-swiper/dist/exporter'
+import 'swiper/css/swiper.css'
 
 // Swiper modules
 SwiperClass.use([Pagination, Mousewheel, Autoplay])
