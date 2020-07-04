@@ -44,6 +44,7 @@ export default {
     this.$nextTick(() => {
       window.addEventListener('scroll', this.handleScroll)
       window.addEventListener('resize', this.handleScroll)
+      this.handleScroll()
     })
   },
   beforeDestroy() {
