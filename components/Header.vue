@@ -31,13 +31,14 @@ export default {
       hoverAbout: false,
       white: false,
       hideTitle: true,
-      isMobile: false
+      isMobile: true
     }
   },
   watch: {
     $route(to, from) {
       this.hoverAbout = false
       this.displayAbout = to.name !== 'about'
+      this.handleScroll()
     }
   },
   mounted() {
@@ -63,7 +64,7 @@ export default {
       this.hoverAbout = false
     },
     handleScroll() {
-      if (window.innerWidth < 959) {
+      if (window.innerWidth <= 1024 && this.$nuxt.$route.name === 'index') {
         this.isMobile = true
       } else {
         this.isMobile = false

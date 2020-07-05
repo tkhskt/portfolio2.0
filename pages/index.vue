@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     handleResize() {
-      if (window.innerWidth < 959) {
+      if (window.innerWidth <= 1024) {
         this.isMobile = true
       } else {
         this.isMobile = false
