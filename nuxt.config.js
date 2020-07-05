@@ -28,7 +28,7 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://thorn-in-my-si.de/card.png'
+        content: 'https://thorn-in-my-si.de/icon.png'
       },
       { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
       { hid: 'twitter:site', name: 'twitter:site', content: '@gericass' },
