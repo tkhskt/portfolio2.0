@@ -6,3 +6,9 @@ Vue.prototype.$howler = new Howl({
   loop: true,
   preload: true
 })
+require('@/assets/img/vue.png')
+require('@/assets/img/android.png')
+require('@/assets/img/firebase.png')
+require('@/assets/img/django.png')
+require('@/assets/img/go.png')
+require('@/assets/img/docker.png')
