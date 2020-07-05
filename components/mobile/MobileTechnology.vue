@@ -19,24 +19,24 @@
       </p>
     </div>
     <swiper ref="swiper" class="slide-container" :options="swiperOptions">
-      <swiper-slide class="content"
-        ><img src="~/assets/img/vue.png"
-      /></swiper-slide>
-      <swiper-slide class="content"
-        ><img src="~/assets/img/android.png"
-      /></swiper-slide>
-      <swiper-slide class="content"
-        ><img src="~/assets/img/firebase.png"
-      /></swiper-slide>
-      <swiper-slide class="content"
-        ><img src="~/assets/img/django.png"
-      /></swiper-slide>
-      <swiper-slide class="content"
-        ><img src="~/assets/img/go.png"
-      /></swiper-slide>
-      <swiper-slide class="content"
-        ><img src="~/assets/img/docker.png"
-      /></swiper-slide>
+      <swiper-slide class="content">
+        <div class="content-img vue"></div>
+      </swiper-slide>
+      <swiper-slide class="content">
+        <div class="content-img android"></div>
+      </swiper-slide>
+      <swiper-slide class="content">
+        <div class="content-img firebase"></div>
+      </swiper-slide>
+      <swiper-slide class="content">
+        <div class="content-img django"></div>
+      </swiper-slide>
+      <swiper-slide class="content">
+        <div class="content-img go"></div>
+      </swiper-slide>
+      <swiper-slide class="content">
+        <div class="content-img docker"></div>
+      </swiper-slide>
     </swiper>
   </div>
 </template>
@@ -116,11 +116,29 @@ export default {
     height: 100vh;
   }
   .content {
-    img {
+    .content-img {
       height: 100%;
       width: 100%;
-      object-position: center;
-      object-fit: contain;
+      background-size: contain;
+      background-position: center;
+    }
+    .vue {
+      background-image: url('~assets/img/vue.png');
+    }
+    .android {
+      background-image: url('~assets/img/android.png');
+    }
+    .firebase {
+      background-image: url('~assets/img/firebase.png');
+    }
+    .django {
+      background-image: url('~assets/img/django.png');
+    }
+    .go {
+      background-image: url('~assets/img/go.png');
+    }
+    .docker {
+      background-image: url('~assets/img/docker.png');
     }
   }
 }
