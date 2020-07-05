@@ -25,7 +25,7 @@ export default {
         property: 'og:description',
         content: description
       },
-      { hid: 'og:image', property: 'og:image', content: '/static/card.png' },
+      { hid: 'og:image', property: 'og:image', content: '/card.png' },
       { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
       { hid: 'twitter:card', name: 'twitter:site', content: '@gericass' },
       { hid: 'twitter:card', name: 'twitter:creator', content: '@gericass' }
