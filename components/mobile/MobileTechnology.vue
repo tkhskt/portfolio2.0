@@ -15,7 +15,7 @@
     <div class="text-container">
       <p>
         モバイルやウェブの開発をしています。
-        <br />技術を用いた日常の様々な課題の解決方法や、新しい体験について研究しています。
+        <br />様々な技術を用いて、課題解決や新しい体験の探求をしています。
       </p>
     </div>
     <swiper ref="swiper" class="slide-container" :options="swiperOptions">
