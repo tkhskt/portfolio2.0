@@ -1,4 +1,4 @@
-const siteName = 'KeitaTakahashi'
+const siteName = 'Keita Takahashi'
 const description = 'thorn in my side'
 
 export default {
@@ -14,15 +14,21 @@ export default {
       { hid: 'description', name: 'description', content: description },
       { hid: 'og:site_name', property: 'og:site_name', content: siteName },
       { hid: 'og:type', property: 'og:type', content: 'website' },
-      { hid: 'og:url', property: 'og:url', content: 'https://example.com' },
+      {
+        hid: 'og:url',
+        property: 'og:url',
+        content: 'https://thorn-in-my-si.de'
+      },
       { hid: 'og:title', property: 'og:title', content: siteName },
       {
         hid: 'og:description',
         property: 'og:description',
         content: description
       },
-      { hid: 'og:image', property: 'og:image', content: '/icon.png' },
-      { hid: 'twitter:card', name: 'twitter:card', content: '/icon.png' }
+      { hid: 'og:image', property: 'og:image', content: '/static/card.png' },
+      { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
+      { hid: 'twitter:card', name: 'twitter:site', content: '@gericass' },
+      { hid: 'twitter:card', name: 'twitter:creator', content: '@gericass' }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
