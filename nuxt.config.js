@@ -27,8 +27,8 @@ export default {
       },
       { hid: 'og:image', property: 'og:image', content: '/card.png' },
       { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
-      { hid: 'twitter:card', name: 'twitter:site', content: '@gericass' },
-      { hid: 'twitter:card', name: 'twitter:creator', content: '@gericass' }
+      { hid: 'twitter:site', name: 'twitter:site', content: '@gericass' },
+      { hid: 'twitter:creator', name: 'twitter:creator', content: '@gericass' }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
