@@ -1,3 +1,6 @@
+const siteName = 'KeitaTakahashi'
+const description = 'thorn in my side'
+
 export default {
   mode: 'spa',
   /*
@@ -8,11 +11,18 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: description },
+      { hid: 'og:site_name', property: 'og:site_name', content: siteName },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:url', property: 'og:url', content: 'https://example.com' },
+      { hid: 'og:title', property: 'og:title', content: siteName },
       {
-        hid: 'config',
-        name: 'Keita Takahashi',
-        content: 'thorn in my side'
-      }
+        hid: 'og:description',
+        property: 'og:description',
+        content: description
+      },
+      { hid: 'og:image', property: 'og:image', content: '/icon.png' },
+      { hid: 'twitter:card', name: 'twitter:card', content: '/icon.png' }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
