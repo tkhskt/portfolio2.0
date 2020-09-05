@@ -137,6 +137,7 @@ export default class Gl {
     // 原点方向を見つめる
     this.camera.lookAt(new THREE.Vector3(0, 0, 0))
     this.material.uniforms.uPercent = { value: Math.tan(radian) }
+    console.log(Math.tan(radian))
     // this.renderer.render(this.scene, this.camera)
     // this.customPass.uniforms.time.value = this.clock.getElapsedTime()
     this.composer.render()
