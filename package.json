@@ -17,7 +17,7 @@
     "baffle": "^0.3.6",
     "gsap": "^3.3.4",
     "howler": "^2.2.0",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.15.8",
     "nuxt-device-detect": "^1.1.5",
     "nuxt-purgecss": "^1.0.0",
     "raw-loader": "^4.0.1",
